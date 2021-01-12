@@ -137,8 +137,9 @@ void setup() {
     // Wait for USB Serial.
     while (!Serial) {}
 
-    PrintStates();
-    PrintGaitCommands();
+    PrintTestingCommands();
+    // PrintStates();
+    // PrintGaitCommands();
 
     // Make sure the custom firmware is loaded because the default BAUD is 115200
     odrv0Serial.begin(500000);

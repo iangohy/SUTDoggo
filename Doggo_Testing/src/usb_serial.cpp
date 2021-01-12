@@ -154,18 +154,24 @@ void InterpretCommand(char* cmd) {
     }
 }
 
-void PrintGaitCommands() {
-    Serial.println("Available gait commands:");
-    Serial.println("(f)req");
-    Serial.println("step (l)ength");
-    Serial.println("stance (h)eight");
-    Serial.println("(d)own amplitude");
-    Serial.println("(u)p amplitude");
-    Serial.println("flight (p)roportion");
-    Serial.println("(s)tep difference");
+// TODO: add available commands for testing
+void PrintTestingCommands() {
+    Serial.println("SUTDoggo Testing and Debugging");
+    Serial.println("Toggle (D)ebug (original code)");
 }
 
-void PrintStates() {
-    Serial.println("STATES: Danc(E), (W)alk, (T)rot, (B)ound, (P)ronk, (S)top, (J)ump, (Y)TurnTrot");
-    Serial.println("Toggle (D)ebug");
-}
+// void PrintGaitCommands() {
+//     Serial.println("Available gait commands:");
+//     Serial.println("(f)req");
+//     Serial.println("step (l)ength");
+//     Serial.println("stance (h)eight");
+//     Serial.println("(d)own amplitude");
+//     Serial.println("(u)p amplitude");
+//     Serial.println("flight (p)roportion");
+//     Serial.println("(s)tep difference");
+// }
+
+// void PrintStates() {
+//     Serial.println("STATES: Danc(E), (W)alk, (T)rot, (B)ound, (P)ronk, (S)top, (J)ump, (Y)TurnTrot");
+//     Serial.println("Toggle (D)ebug");
+// }
