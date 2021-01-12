@@ -1,23 +1,22 @@
-# Stanford DOGGO
-## Overview Of Stanford Doggo
-This is the code for the Stanford Doggo quadruped robot. Stanford Doggo is a highly agile robot designed to provide an accessible platform for legged robot research. Currently, the robot holds the record (among all robots) for greatest vertical jumping agility<sup>1</sup>. Stanford Doggo can also jump twice as high as any existing quadruped robot. Weighing in at a little less than 5kg, Stanford Doggo is easy and safe to develop on, but at the same time, Stanford Doggo should not be expected to carry heavy loads or climb extremely aggressive terrain. The project is supported by Stanford Student Robotics http://roboticsclub.stanford.edu/.
+# SUTDoggo Debuggin/Testing Software
+[Work in Progress]
 
-<sup>1</sup>[Vertical jumping agility] = [maximum vertical jump height] / [time from onset of actuation to apogee of jump]
-
-## Overview of the Firmware
-The Stanford Doggo firmware (contained here), runs on a Teensy 3.5 microcontroller. The code is Arduino-based, which we hopes lowers some barriers to entry, and is simple in structure. While the robot currently lacks advanced features like autonomous navigation or whole-body kinematic control, Stanford Doggo is exceptional at the basic behaviors like trotting and jumping. As we continue to work the robot, we hope to gradually add more sophisticated features that expand the domain of what's possible. Some of the current projects include: Sensing ground reaction forces, detecting obstacles via the natural leg compliance, acrobatic manuevers, and many more.
-
-## Code Requirements
-To download the necessary submodules, run the following shell command from the Doggo directory:
-```
-git submodule init
-git submodule update
-```
-This should download the ChRt library (https://github.com/Nate711/ChRt) to the lib/ directory.
+This folder contains software to test and debug the SUTDoggo.
 
 ## Notes
 ### Available serial commands
-Use a serial monitor (we use the Arduino one) to send over these commands to Doggo in order to set the behavior or to change parameters.
+Use a serial monitor (Arduino/PlatformIO) to send over these commands to Doggo in order to set the behavior or to change parameters.
+
+### USB vs XBEE
+(Not tested)
+Comment out the line below in `config.h` to debug over USB.
+```
+#define USE_XBEE
+```
+
+### Debug Thread Frequency
+Debug thread frequency is defined in `config.h`.
+
 #### Changing behavior
 ##### General behaviors
 - 'S': Put the robot in the STOP state. The legs will move to the neutral position. This is like an software e-stop.  
