@@ -26,3 +26,26 @@ The robot walks, trots, bounds, and pronks by commanding different sinusoidal op
 At any given time, the Teensy computes the desired foot locations in cartesian coordinates, and then converts them to leg angles (θ) and leg separations (γ). These two numbers describe the virtual leg that originates at the hip joint of the leg and terminates at the foot.
 
 These virtual leg parameters (theta and gamma) and their corresponding virtual stiffness and damping coefficients are sent from the Teensy to the four ODrives at the 100Hz refresh rate. The ODrives then run a custom PD controller to generate torques in theta-gamma space. The ODrives then use the Jacobian of the leg to transform torques in theta-gamma space into torques in the motor0-motor1 space.
+
+### Debug Data
+Globally stored debug values
+```
+--- globals.h ---
+// Make structs to hold motor readings and setpoints
+struct ODrive {
+    float sp_gamma = 0;
+    float sp_theta = 0; // set point values
+    float est_theta = 0;
+    float est_gamma = 0; // actual values from the odrive
+};
+
+struct DebugValues {
+    float t;
+    long position_reply_time;
+    struct ODrive odrv0, odrv1, odrv2, odrv3;
+    struct IMU imu;
+};
+
+extern struct DebugValues global_debug_values;
+```
+
