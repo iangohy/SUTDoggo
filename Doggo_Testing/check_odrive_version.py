@@ -88,7 +88,7 @@ fw_version_prerelease = device.fw_version_prerelease if hasattr(device, 'fw_vers
 fw_version = (fw_version_major, fw_version_minor, fw_version_revision, fw_version_prerelease)
 
 # Report and print the relevant ODrive's board version (hw_version, with an accompanying fw_version) to the terminal console or display screen
-print("Found ODrive of serial number {} with board/hardware version {} and firmware version {}{}".format(
+print("Found ODrive of serial number {} with board/hardware version {} and firmware version {}{}.".format(
                 serial_number,
                 get_hw_version_string(hw_version),
                 get_fw_version_string(fw_version),
