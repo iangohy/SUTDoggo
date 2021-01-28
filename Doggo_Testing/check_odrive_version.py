@@ -22,7 +22,7 @@ def get_hw_version_string(hw_version):
     else:
         return "v{}.{}{}".format(hw_version[0], hw_version[1], ("-" + str(hw_version[2]) + "V") if hw_version[2] > 0 else "")
 
-# Define your ODrive's serial number here, if necessary
+# Define your ODrive's serial number here, if necessary (this serial number is the 12 uppercase hexadecimal characters as shown in lsusb, which is different from the output serial number)
 serial_number = ""
 app_shutdown_token = Event()
 find_odrive_cancellation_token = Event(app_shutdown_token)
