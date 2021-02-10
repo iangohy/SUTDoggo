@@ -7,51 +7,58 @@ Credits to the [original Stanford Doggo repository](https://github.com/Nate711/S
 This repository will be divided into three parts to house the different parts of the SUTDoggo:
 
 1. This main root folder will contain the main project files such as the BOM, updated CAD files, circuit diagram for electronics, general guidelines, project goals and plans, FAQ, etc.
-2. The ODrive subfolder will contain the modified version of the ODrive firmware (merged v0.4.11 of the official factory firmware with Nate's code customizations).
-3. The Doggo subfolder will contain the custom Doggo firmware. Currently, it is still using the default Doggo codebase. Future plan would be to refactor this codebase into a ROS workspace to enable ROS package integrations.
+2. The `ODrive` subfolder will contain the modified version of the ODrive firmware (merged v0.4.11 of the official factory firmware with Nate's code customizations).
+3. The `Doggo` subfolder will contain the custom Doggo firmware. Currently, it is still using the default Doggo codebase. Future plan would be to refactor this codebase into a ROS workspace to enable ROS package integrations.
 
 ## Table of Contents <a name="table-of-contents"></a>
 
-- [SUTDoggo](#sutdoggo)
-  - [Table of Contents](#table-of-contents)
-  - [Stakeholders & Maintainers](#stakeholders-and-maintainers)
-  - [Objectives & Deliverables](#objectives-and-deliverables)
-    - [Goal Deadlines & Status](#deadlines)
-    - [Extra Objectives](#extra-objectives)
-  - [Features & Technologies](#features-and-technologies)
-    - [Features](#features)
-    - [Technologies](#technologies)
-  - [Prerequisites](#prerequisites)
-  - [Demo](#demo)
-  - [Troubleshooting & FAQ](#troubleshooting-and-faq)
-  - [Future Plans & Implementations](#future-plans-and-implementations)
-  - [Components](#components)
-    - [Mechanical](#mechanical)
-    - [Controller/Driver](#controller-driver)
-    - [Sensors](#sensors)
-  - [Additional Resources](#additional-resources)
+[SUTDoggo](#sutdoggo)
+
+- [Table of Contents](#table-of-contents)
+- [Stakeholders & Maintainers](#stakeholders-and-maintainers)
+- [Objectives & Deliverables](#objectives-and-deliverables)
+  - [Goal Deadlines & Status](#deadlines)
+  - [Extra Objectives](#extra-objectives)
+- [Features & Technologies](#features-and-technologies)
+  - [Features](#features)
+  - [Technologies](#technologies)
+- [Prerequisites](#prerequisites)
+- [Demo](#demo)
+- [Troubleshooting & FAQ](#troubleshooting-and-faq)
+- [Future Plans & Implementations](#future-plans-and-implementations)
+- [Components](#components)
+  - [Mechanical](#mechanical)
+  - [Controller/Driver](#controller-driver)
+  - [Sensors](#sensors)
+- [Additional Resources](#additional-resources)
 
 ## Stakeholders & Maintainers <a name="stakeholders-and-maintainers"></a>
 
-- Project Lead: [James Raphael Tiovalen](https://github.com/jamestiotio) (Maintainer)
-- Mechanical Engineers:
-    - [Kevin Ma Yuchen](https://github.com/Kevinskwk)
-    - Zhi Cong
-    - Yoong Hao
-    - [Dody Senputra](https://github.com/ulaladungdung)
-- Electrical Engineers:
-    - [Chung Wah Kit](https://github.com/sdencanted)
-    - Gerald Wong
-- Software Developers:
-    - [James Raphael Tiovalen](https://github.com/jamestiotio)
-    - [Dody Senputra](https://github.com/ulaladungdung)
-    - [Kevin Ma Yuchen](https://github.com/Kevinskwk)
-    - [Chung Wah Kit](https://github.com/sdencanted)
-- Mentors:
-    - [@methylDragon](https://github.com/methylDragon)
-    - [@Fasermaler](https://github.com/Fasermaler)
-    - Bryan Kong
-    - Shi En
+Current Project Lead: [Ian Goh Yiheng](https://github.com/iangohy) (Maintainer)
+
+Current Team:
+
+* Ashley Ho Si Ci
+* [Ian Goh Yiheng]((https://github.com/iangohy))
+* Michael Lim
+* Myo Min Khant
+
+Honour Roll:
+
+- [Chung Wah Kit](https://github.com/sdencanted) (Electrical, Software)
+- [Dody Senputra](https://github.com/ulaladungdung) (Mechanical, Software)
+- Gerald Wong (Electrical)
+- [James Raphael Tiovalen](https://github.com/jamestiotio) (Project Lead, Software)
+- [Kevin Ma Yuchen](https://github.com/Kevinskwk) (Mechanical, Software)
+- Yoong Hao (Mechanical)
+- Zhi Cong (Mechanical)
+
+Mentors:
+- [@methylDragon](https://github.com/methylDragon)
+- [@Fasermaler](https://github.com/Fasermaler)
+- Bryan Kong
+- Shi En
+
 - Supervisor: Prof. Tan U-Xuan
 
 ## Objectives & Deliverables <a name="objectives-and-deliverables"></a>
@@ -60,12 +67,15 @@ This repository will be divided into three parts to house the different parts of
 
 - Mechanical Assembly (Status: In Progress ⌛)
 - Electrical Assembly (Status: In Progress ⌛)
-- Software Adjustment (Status: Completed ✔️)
+  - Basic electrical assembly completed
+- Software Adjustment (Status: In Progress ⌛)
+  - Testing/Debugging Firmware (Status: In Progress ⌛)
 - Teleoperation Calibration (Status: Not Yet ❌)
 
 ### Extra Objectives <a name="extra-objectives"></a>
 
-- Implement ZED Stereo Camera
+- Integration with Robot Operating System
+	- Implement ZED Stereo Camera/Intel RealSense Camera
 - Implement autonomous navigation like LinoRobot
 - Complete documentation of Doggo's navigation stack
 
@@ -120,11 +130,6 @@ Before diving into this project, make sure that you are at least familiar with:
 
 #### FAQ
 
-##### The sub-folders are empty!
-Run this to populate the folders.
-```shell
-git submodule update --init --recursive --remote
-```
 ##### How do I configure the ODrive parameters for Doggo?
 We use the script ```https://github.com/Nate711/ODrive/blob/master/tools/doggo_setup.py```
 ##### How are the legs numbered?
@@ -400,17 +405,20 @@ The code does not have a .ino file. Instead we use Platformio to compile all the
             elseif boardversion == "" then
             ```
         - Do `make`
-            
+          
             - This may require you to `sudo apt install tup`
         - The firmware can be found in ODrive/Firmware/Build/
         - For users of ODrive 3.4 and lower please refer to https://docs.odriverobotics.com/odrivetool.html#device-firmware-update for firmware flashing instructions
         - For ODrive 3.5 and higher, run the following:
         ```
         odrivetool dfu path/to/ODrive/Firmware/build/ODriveFirmware.hex
+        ```
+    ```
+    
     ```
     
 - #### Setting parameters
-    
+  
         - Nate's default configuration script can be found here:
         ```
         python ODrive/tools/doggo_setup.py
@@ -518,5 +526,3 @@ $ cd build
 // Flash firmware's hex file to odrive
 $ sudo odrivetool dfu ODriveFirmware.hex
 ```
-=======
-**I think that about wraps everything up! Let me know if you have questions, and I&rsquo;ll also try to update the repo if people are interested in more details.**
